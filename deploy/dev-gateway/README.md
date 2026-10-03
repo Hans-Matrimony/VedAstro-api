@@ -5,3 +5,5 @@ The fork is missing core calculator source and cannot build its .NET API. This d
 Coolify settings: branch `dev`, build context `/`, Dockerfile `/deploy/dev-gateway/Dockerfile`, container port `80`, health path `/health`. No database or OpenRouter key is required. `/health` checks the gateway process; test an actual calculation separately to check the upstream service.
 
 Hosted API limits and unavailable calculations still apply. Keep production calculation verification enabled in AstroFriend.
+
+The gateway bundles the hosted API's YR1 intermediate and cross-signed Root YR certificates, whose chain was verified against ISRG Root X1. This supplies chain certificates absent from the Alpine trust bundle. TLS certificate verification stays enabled; no leaf certificate or self-signed trust anchor is added.
