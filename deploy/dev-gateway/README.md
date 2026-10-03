@@ -6,4 +6,4 @@ Coolify settings: branch `dev`, build context `/`, Dockerfile `/deploy/dev-gatew
 
 Hosted API limits and unavailable calculations still apply. Keep production calculation verification enabled in AstroFriend.
 
-The gateway bundles the hosted API's YR1 intermediate and cross-signed Root YR certificates, whose chain was verified against ISRG Root X1. This supplies chain certificates absent from the Alpine trust bundle. TLS certificate verification stays enabled; no leaf certificate or self-signed trust anchor is added.
+The gateway bundles the hosted API's YR1 intermediate, cross-signed Root YR and standard ISRG Root X1 certificates. The chain was validated by the operating system against ISRG Root X1 before export. TLS verification stays enabled with depth four; no leaf certificate is trusted directly.
