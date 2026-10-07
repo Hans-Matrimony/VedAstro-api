@@ -45,6 +45,13 @@ accepts up to three engine `filterTags`; it returns raw classical descriptions.
 These descriptions must undergo product interpretation and safety review before
 being shown to a user. Period names alone do not establish event predictions.
 
+`ReadingEvidence` is a single bounded call for `topic` (`marriage`, `career`
+or `education`) plus `time` and `checkTime`. It returns natal coordinates,
+the whole-sign topic ruler, native D9 sign, current major/minor phase and six
+Shadbala components with their checked sum. Native bhava-based strength retains
+its own house convention; it does not replace whole-sign D1 placement rules.
+No raw classical descriptions, predicted event dates or model output are included.
+
 Conventions are fixed: **Lahiri, true nodes, 365.25-day dasha year, VedAstro
 bhava houses**. Bhava-house rule results must not be merged into a whole-sign
 reading. Other ayanamsas are rejected. Inputs require an explicit UTC offset;

@@ -29,7 +29,7 @@ public sealed record CalculationInput(
     TimeInput? time = null, TimeInput? birthTime = null, TimeInput? checkTime = null,
     string? planetName = null, string? houseName = null,
     [property: JsonPropertyName("Ayanamsa")] string? Ayanamsa = null,
-    string[]? filterTags = null, bool? sortByWeight = null, int? levels = null);
+    string[]? filterTags = null, bool? sortByWeight = null, int? levels = null, string? topic = null);
 
 public static class CalculationEngine
 {
@@ -41,7 +41,7 @@ public static class CalculationEngine
     ];
     public static readonly string[] HouseMethods = ["HouseZodiacSign", "LordOfHouse", "PlanetsInHouseBasedOnSign"];
     public static readonly string[] Operations = [.. PlanetMethods, .. HouseMethods,
-        "AllPlanetData", "AllHouseData", "NatalEvidence", "HoroscopePredictions", "DasaAtTime"];
+        "AllPlanetData", "AllHouseData", "NatalEvidence", "ReadingEvidence", "HoroscopePredictions", "DasaAtTime"];
     private static readonly JsonSerializerOptions InputOptions = new()
     {
         UnmappedMemberHandling = JsonUnmappedMemberHandling.Disallow, MaxDepth = 12,
@@ -133,6 +133,7 @@ public static class CalculationEngine
         JToken result;
         var directPayload = false;
         if (operation == "NatalEvidence") result = Natal(time);
+        else if (operation == "ReadingEvidence") result = Reading(time, input);
         else if (operation == "HoroscopePredictions")
         {
             var tags = input.filterTags?.Select(tag => Enum.TryParse<EventTag>(tag, false, out var parsed) &&
@@ -192,6 +193,53 @@ public static class CalculationEngine
                 ["nakshatra"] = Encode(Calculate.PlanetConstellation(planet, time)),
             }))),
     };
+
+    private static JObject Reading(Time time, CalculationInput input)
+    {
+        var topicHouse = input.topic switch { "marriage" => 7, "career" => 10, "education" => 5,
+            _ => throw new ArgumentException("invalid_topic") };
+        var check = input.checkTime?.ToTime() ?? throw new ArgumentException("check_time_required");
+        if (check.GetStdDateTimeOffset() < time.GetStdDateTimeOffset()) throw new ArgumentException("check_before_birth");
+        if (input.planetName is not null || input.houseName is not null || input.filterTags is not null ||
+            input.levels is not null || input.sortByWeight is not null) throw new ArgumentException("unsupported_options");
+        var natal = Natal(time);
+        // The product retains whole-sign D1 readings. Derive the ruler explicitly
+        // from signs; never label the engine's bhava-house rules as whole-sign.
+        var asc = (int)Calculate.HouseZodiacSign(HouseName.House1, time).GetSignName() - 1;
+        PlanetName[] lords = [PlanetName.Mars, PlanetName.Venus, PlanetName.Mercury, PlanetName.Moon,
+            PlanetName.Sun, PlanetName.Mercury, PlanetName.Venus, PlanetName.Mars,
+            PlanetName.Jupiter, PlanetName.Saturn, PlanetName.Saturn, PlanetName.Jupiter];
+        var ruler = lords[(asc + topicHouse - 1) % 12];
+        var components = new JObject();
+        foreach (var method in PlanetMethods.Where(name => name.EndsWith("Bala", StringComparison.Ordinal)))
+        {
+            var strength = (double)Invoke(method, time, ruler);
+            if (!double.IsFinite(strength)) throw new InvalidOperationException("invalid_strength_component");
+            components[method] = strength;
+        }
+        // Upstream Pinda catches exceptions and returns zero. Cross-check against
+        // all six components so that a failed computation cannot become success.
+        var total = Calculate.PlanetShadbalaPinda(ruler, time).ToDouble();
+        if (!double.IsFinite(total) || total <= 0 || Math.Abs(total - components.Properties().Sum(p => (double)p.Value)) > 0.011)
+            throw new InvalidOperationException("invalid_strength_total");
+        var periods = VimshottariDasa.CurrentDasa8Levels(time, check);
+        return new JObject
+        {
+            ["schema"] = "vedastro-reading-evidence-v1", ["topic"] = input.topic,
+            ["natal"] = natal, ["checkTime"] = check.ToJson(),
+            ["topicHouse"] = topicHouse, ["topicRuler"] = ruler.ToString(),
+            ["interpretationHouseSystem"] = "whole_sign",
+            ["navamsaSign"] = Calculate.PlanetNavamsaSign(ruler, time).ToString(),
+            ["period"] = new JObject { ["PD1"] = periods.PD1.ToString(), ["PD2"] = periods.PD2.ToString() },
+            ["strength"] = new JObject
+            {
+                ["planet"] = ruler.ToString(), ["totalVirupas"] = total, ["totalRupas"] = total / 60,
+                ["componentsVirupas"] = components, ["nativeHouseSystem"] = "vedastro_bhava",
+                ["meetsEngineStrengthTest"] = Calculate.IsPlanetStrongInShadbala(ruler, time),
+            },
+            ["eventTimingAvailable"] = false,
+        };
+    }
 
     public static JObject Settings() => new()
     {

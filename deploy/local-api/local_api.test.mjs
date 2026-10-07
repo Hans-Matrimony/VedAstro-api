@@ -39,6 +39,8 @@ test('real local calculator, authentication, validation and repeat cache', async
       ['AllHouseData', { time, houseName: 'House1' }],
       ['HoroscopePredictions', { birthTime: time, filterTags: ['Marriage'] }],
       ['DasaAtTime', { birthTime: time, checkTime: { ...time, StdTime: '00:00 01/01/2026 +05:30' }, levels: 2 }],
+      ...['marriage', 'career', 'education'].map(topic => ['ReadingEvidence', { time, topic,
+        checkTime: { ...time, StdTime: '00:00 01/01/2026 +00:00' } }]),
     ]) {
       const first = await call(operation, body);
       assert.equal(first.status, 200, operation);
@@ -55,6 +57,16 @@ test('real local calculator, authentication, validation and repeat cache', async
         assert.ok(Math.abs((planets.Rahu.longitude - planets.Ketu.longitude + 360) % 360 - 180) < 0.001);
       }
       if (operation === 'DasaAtTime') assert.deepEqual(Object.keys(first.data.Payload.DasaAtTime), ['PD1', 'PD2']);
+      if (operation === 'ReadingEvidence') {
+        const evidence = first.data.Payload.ReadingEvidence;
+        assert.equal(evidence.topic, body.topic);
+        assert.equal(evidence.interpretationHouseSystem, 'whole_sign');
+        assert.equal(evidence.strength.nativeHouseSystem, 'vedastro_bhava');
+        const sum = Object.values(evidence.strength.componentsVirupas).reduce((a, b) => a + b, 0);
+        assert.ok(Math.abs(sum - evidence.strength.totalVirupas) <= 0.011);
+        assert.equal(evidence.eventTimingAvailable, false);
+        assert.equal(Object.keys(evidence.natal.planets).length, 9);
+      }
     }
     const invalid = [
       ['NatalEvidence', { time }, '', 401], ['NatalEvidence', { time }, 'incorrect', 401],
@@ -72,6 +84,9 @@ test('real local calculator, authentication, validation and repeat cache', async
       ['AllHouseData', { time, houseName: 'House13' }, key, 400],
       ['DasaAtTime', { birthTime: time, checkTime: { ...time, StdTime: '00:00 01/01/1900 +00:00' } }, key, 400],
       ['NatalEvidence', '{"time":' + JSON.stringify(time) + ',"Ayanamsa":"LAHIRI","Ayanamsa":"RAMAN"}', key, 400],
+      ['ReadingEvidence', {time, topic: 'unknown', checkTime: time}, key, 400],
+      ['ReadingEvidence', {time, topic: 'marriage'}, key, 400],
+      ['ReadingEvidence', {time, topic: 'marriage', checkTime: time, planetName: 'Rahu'}, key, 400],
     ];
     for (const [operation, body, token, status] of invalid) assert.equal((await call(operation, body, token)).status, status, operation + ':' + JSON.stringify(body));
   } finally { child.kill(); }
