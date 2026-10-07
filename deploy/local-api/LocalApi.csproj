@@ -1,0 +1,15 @@
+<Project Sdk="Microsoft.NET.Sdk.Web">
+  <PropertyGroup>
+    <TargetFramework>net10.0</TargetFramework>
+    <ImplicitUsings>enable</ImplicitUsings>
+    <Nullable>enable</Nullable>
+    <AssemblyName>VedAstro.LocalApi</AssemblyName>
+    <EngineRoot Condition="'$(EngineRoot)' == ''">$(MSBuildThisFileDirectory).engine</EngineRoot>
+    <DefaultItemExcludes>$(DefaultItemExcludes);.engine/**</DefaultItemExcludes>
+    <RestorePackagesWithLockFile>true</RestorePackagesWithLockFile>
+  </PropertyGroup>
+  <ItemGroup>
+    <ProjectReference Include="$(EngineRoot)/Library/Library.csproj" />
+    <Compile Remove="BoundedEngineCache.cs" />
+  </ItemGroup>
+</Project>

@@ -1,0 +1,4 @@
+.engine/
+bin/
+obj/
+__pycache__/

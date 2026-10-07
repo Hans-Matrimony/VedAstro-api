@@ -1,0 +1,840 @@
+{
+  "revision": "40763952742f76369a505d8db2e9e9fa67f75d78",
+  "files": [
+    {
+      "path": "Library/Data/AdvancedOptionAttribute.cs",
+      "sha256": "546fbca5f67b3e65d3d324eeb4a42522f12ec91f7399c1dfb2c1ee9606bb1845",
+      "bytes": 361
+    },
+    {
+      "path": "Library/Data/Angle.cs",
+      "sha256": "34aee20b1618133368c0f6298c65c095c78ba6a2db3cc79bacc3b227cd9fcce8",
+      "bytes": 8659
+    },
+    {
+      "path": "Library/Data/AzureTable.cs",
+      "sha256": "76f7fd08ef2b961ff798864682c9a6dda95b05dcb238a70e5f3c815bef6e0ce8",
+      "bytes": 2511
+    },
+    {
+      "path": "Library/Data/Bhinnashtakavarga.cs",
+      "sha256": "44e95b346179fd7256b563fb2183c12bb53641b08f1418a5c47208d13eb10c9d",
+      "bytes": 3015
+    },
+    {
+      "path": "Library/Data/CacheHolder.cs",
+      "sha256": "dda8d31eea58b604a1d78cbfe1b1ed960c014aba9ed8794fbd45317c4590c878",
+      "bytes": 469
+    },
+    {
+      "path": "Library/Data/CacheKey.cs",
+      "sha256": "d79ab4d376e850ae23a0a747b2c31ff411eccad01f4a7d297f6ffd7fcde9f04d",
+      "bytes": 3154
+    },
+    {
+      "path": "Library/Data/CalculatorResult.cs",
+      "sha256": "fdad9b98da72f64827ffe2f2451ee777b94f732aa18d9c4450a3eaede18dc367",
+      "bytes": 6472
+    },
+    {
+      "path": "Library/Data/Calendar.cs",
+      "sha256": "422758b2123c2d61b3024fba14e1ba2725c2b5169ea322fbfd5aacd6679980aa",
+      "bytes": 389
+    },
+    {
+      "path": "Library/Data/ChartName.cs",
+      "sha256": "afa056cff333a34397835a2e0f7aea90aa1fca81fa6d8391fa8f8e77bc8c69b8",
+      "bytes": 1144
+    },
+    {
+      "path": "Library/Data/ChartOptions.cs",
+      "sha256": "f6ed9c26a96fd17b029a47215ee0dbbf6f1c6b72b529f0f8686841a09e18c61b",
+      "bytes": 5219
+    },
+    {
+      "path": "Library/Data/ChatMessageEntity.cs",
+      "sha256": "185a6f8fb05ddbeffa4bf69670b1b58021796b1e83f59bb56f08f56897044aaa",
+      "bytes": 1740
+    },
+    {
+      "path": "Library/Data/Constellation.cs",
+      "sha256": "d03e5fa6fd0677035f25e5458b7e11383b5d727f98a4362c2e1edc4bc7e1c52f",
+      "bytes": 3957
+    },
+    {
+      "path": "Library/Data/ConstellationAnimal.cs",
+      "sha256": "0d55c8a0da1a7f1c60be9616b114ea8ac86f529f807c909641462554fd1cbdca",
+      "bytes": 204
+    },
+    {
+      "path": "Library/Data/CurrentCallerData.cs",
+      "sha256": "07741392760f61ac72199bbea66921901024b940660ab3657265d6c443fcf4e0",
+      "bytes": 2732
+    },
+    {
+      "path": "Library/Data/CustomExceptions.cs",
+      "sha256": "8a240b65ecb0d1a6f950590bd6f51cad5a700fa924d3e9af615ecc8b33b7c48e",
+      "bytes": 618
+    },
+    {
+      "path": "Library/Data/Dasa.cs",
+      "sha256": "2f1833439b11befa307e07e6b7788acec88da983f27e09bef46576ebc3b5212d",
+      "bytes": 652
+    },
+    {
+      "path": "Library/Data/DasaChart.cs",
+      "sha256": "377a6d1f014cbab58c7e35fe2180ff5c2613d4c8ce2e672f7933f9e771a7db5d",
+      "bytes": 10159
+    },
+    {
+      "path": "Library/Data/DasaEvent.cs",
+      "sha256": "970ebde41c7eaa77330ebff6d3cdf0cca6c1eceec3d28636f4f4a0b86d86ace2",
+      "bytes": 7602
+    },
+    {
+      "path": "Library/Data/Data.cs",
+      "sha256": "8e093d62ff035f4c3233b32e516a6868d3689d7f10de8b0c198dbed1d205578d",
+      "bytes": 8962
+    },
+    {
+      "path": "Library/Data/Delegate/AlgoritmFuncs.cs",
+      "sha256": "eef60d4eeb916a48de105d7e6a0643a11fd367584d4dcb5017a60d783c67bedb",
+      "bytes": 204
+    },
+    {
+      "path": "Library/Data/Delegate/CalculatorDelegates.cs",
+      "sha256": "b61dcfba65867dea405540d77a1861b3ae16ef4e95d48a9db0f86a541f8f8a90",
+      "bytes": 565
+    },
+    {
+      "path": "Library/Data/Delegate/EventGenerator.cs",
+      "sha256": "81aa7c90c57f45e7c08c39b0615a95f397e02baccea8f5a4ae186afff798ff31",
+      "bytes": 106
+    },
+    {
+      "path": "Library/Data/Enum/Animal.cs",
+      "sha256": "2ded658966c5b6ca1a01bca60df87a461c6509590dac66dbabaddaff0e5aad97",
+      "bytes": 415
+    },
+    {
+      "path": "Library/Data/Enum/Avasta.cs",
+      "sha256": "8e5045d8acb6b2409dea6e44892b695919eaea9e07c99d1a5fd4f5239d5858eb",
+      "bytes": 527
+    },
+    {
+      "path": "Library/Data/Enum/Ayanamsa.cs",
+      "sha256": "fffa7a5789162c1bd40f139dd46c923c00d0bd1d212d60e69875726d97629abf",
+      "bytes": 2620
+    },
+    {
+      "path": "Library/Data/Enum/CalendarAccount.cs",
+      "sha256": "eeccde78f47887bda36b81443e46cd6f590ca57e26fa74480a4cb246cd5b0dd8",
+      "bytes": 241
+    },
+    {
+      "path": "Library/Data/Enum/ChartType.cs",
+      "sha256": "8a616692c3e072e0b721f6f69a807d89a7c5687b07e92b090b2b88da484f8ca5",
+      "bytes": 573
+    },
+    {
+      "path": "Library/Data/Enum/ConstellationName.cs",
+      "sha256": "947a1fa639bbcb5bafc39a18daa486f41fa844f019f2fa8ad781894d72dd4128",
+      "bytes": 867
+    },
+    {
+      "path": "Library/Data/Enum/DasaTypes.cs",
+      "sha256": "539c894bdb8434e613af0cd51a6718da686ce037c994d0440f8240d7dcf59fbd",
+      "bytes": 473
+    },
+    {
+      "path": "Library/Data/Enum/DayOfWeek.cs",
+      "sha256": "a54cf4cdaff786c6ff1dd65d31217153d71ecac31562d22825d4cafc55e0984a",
+      "bytes": 218
+    },
+    {
+      "path": "Library/Data/Enum/EventName.cs",
+      "sha256": "765721e4100c30f5e6d000f63f4c2b3ae3715224f2dc7cf81102a2612eb18f3e",
+      "bytes": 26953
+    },
+    {
+      "path": "Library/Data/Enum/EventNature.cs",
+      "sha256": "cac56100b38be90221099d81d794df03c4c47eea50bdbb7ded04e7ddd07be32e",
+      "bytes": 421
+    },
+    {
+      "path": "Library/Data/Enum/EventTag.cs",
+      "sha256": "1f3ea59b8918c7871a925fb7575633bfc87e5c560a7487e6107dd86f14c75942",
+      "bytes": 5032
+    },
+    {
+      "path": "Library/Data/Enum/Gender.cs",
+      "sha256": "dfdc1893987ee77840305d86e0ed1c22d3025c871673f206c6944b4a07722ec3",
+      "bytes": 325
+    },
+    {
+      "path": "Library/Data/Enum/Guna.cs",
+      "sha256": "785094ee1f9a489d2b6f7e2620e44979797243936c676662ca9891f3d7dcf2df",
+      "bytes": 488
+    },
+    {
+      "path": "Library/Data/Enum/HoroscopeName.cs",
+      "sha256": "c16f9d96bd7e1653e76cf08e732979705d3474556c55287708ac559b146395ab",
+      "bytes": 13677
+    },
+    {
+      "path": "Library/Data/Enum/HouseName.cs",
+      "sha256": "6abb296c04c34d5d43a12e70f64f9bb05a74568ee1c7143107061da348ee1aba",
+      "bytes": 4597
+    },
+    {
+      "path": "Library/Data/Enum/Karana.cs",
+      "sha256": "ebb9bda2c58340df183b1a0934b92e8cf1ce055cf453085f83f41622af2eed23",
+      "bytes": 385
+    },
+    {
+      "path": "Library/Data/Enum/LunarDayGroup.cs",
+      "sha256": "d5370b99db4cd406f643edc5403d41b344acb9f428fdb70f93dfc8a204842c39",
+      "bytes": 169
+    },
+    {
+      "path": "Library/Data/Enum/LunarMonth.cs",
+      "sha256": "60d634663fc4f88572c23563ae33f0113f2b89b274e6ac77c48229c81ca1b35d",
+      "bytes": 2577
+    },
+    {
+      "path": "Library/Data/Enum/MatchPredictionName.cs",
+      "sha256": "9ce81ff8f5c32e05769076a29e7cdabe1f3ba72077401de608f639183ffaf4c4",
+      "bytes": 640
+    },
+    {
+      "path": "Library/Data/Enum/Mode.cs",
+      "sha256": "c6ca6037ec5fae9d60039db63a9c8374a39c8211c067f90b6b7fcc4eadb8932a",
+      "bytes": 189
+    },
+    {
+      "path": "Library/Data/Enum/MoonPhase.cs",
+      "sha256": "e3e09935c6a4490157dddae84e80037b450da4ad8079917df4c953c01fb2a04c",
+      "bytes": 237
+    },
+    {
+      "path": "Library/Data/Enum/NithyaYoga.cs",
+      "sha256": "15eb58afaa6b3edc5f55c50e7e1b1f1e615197f9e62287143197e57a3e379974",
+      "bytes": 4419
+    },
+    {
+      "path": "Library/Data/Enum/PanchakaName.cs",
+      "sha256": "e54132695dccd24e64377394b15a6e3f3bbf526366bd7ccb3c38d469fb2a9357",
+      "bytes": 573
+    },
+    {
+      "path": "Library/Data/Enum/PlanetMotion.cs",
+      "sha256": "55af6240b9926d3cd929948cb8220e5a0aa8dee5ffc3715d437b283135b5803d",
+      "bytes": 194
+    },
+    {
+      "path": "Library/Data/Enum/PlanetToPlanetRelationship.cs",
+      "sha256": "a1180f2ac9b1d85187cd65f353d1d5c69eba9cd3f6a27f18d185c42cf91bb436",
+      "bytes": 1012
+    },
+    {
+      "path": "Library/Data/Enum/PlanetToSignRelationship.cs",
+      "sha256": "1f47ee519c7a114f24e7f314fee1e7604231d44c968a1f4be5cd7479d2be0ec6",
+      "bytes": 922
+    },
+    {
+      "path": "Library/Data/Enum/SignProperties.cs",
+      "sha256": "cbe1ee2a03dc67086764a0b775e217a038b48a44a811d73b3d89fe7a0ab7bca1",
+      "bytes": 10302
+    },
+    {
+      "path": "Library/Data/Enum/SimpleAyanamsa.cs",
+      "sha256": "e2ae3d29a953f00a28b9e246ccdd122a44f7b9ed54a168b56e91505c0d172773",
+      "bytes": 2269
+    },
+    {
+      "path": "Library/Data/Enum/TarabalaName.cs",
+      "sha256": "7dd0f4142ecce58873f710feaaffb1699a18af67bee176b7ab6023983a3d1418",
+      "bytes": 955
+    },
+    {
+      "path": "Library/Data/Enum/Varna.cs",
+      "sha256": "2b67a00f743e18ec31d05e62d38c8bc24846b7161135ef9dd1b8175d40659e41",
+      "bytes": 146
+    },
+    {
+      "path": "Library/Data/Enum/ZodiacName.cs",
+      "sha256": "d1bd0be7ddd4e9c1b157d515434ec29865e9a2b3da5bc0f60ec74721f5e85f38",
+      "bytes": 4829
+    },
+    {
+      "path": "Library/Data/Event.cs",
+      "sha256": "ebc93fe7b50cc95c6cc3af069cc7ffd3df41a3d0aca715b3f7076bdb769288e1",
+      "bytes": 15060
+    },
+    {
+      "path": "Library/Data/EventData.cs",
+      "sha256": "0c2ae5ff0162ed54ec1c5b87fedc859b71e5900b5804ee2c4516227a8613f78f",
+      "bytes": 11351
+    },
+    {
+      "path": "Library/Data/EventDataListStatic.cs",
+      "sha256": "3f2c1f78ee4d5fcd7a349deec77fdf99fb9133493f13e68a63f65a67db280887",
+      "bytes": 472714
+    },
+    {
+      "path": "Library/Data/EventNameAttribute.cs",
+      "sha256": "06fd28b5ed691c46535d11b14b9e8045d516abd09c86bd88425debdb581b1be4",
+      "bytes": 907
+    },
+    {
+      "path": "Library/Data/EventsChart.cs",
+      "sha256": "8ea30f6b9f745548447c808c16a2d791d63d6fac58330c63ed9a15a7b13dd21d",
+      "bytes": 12867
+    },
+    {
+      "path": "Library/Data/EventSlices.cs",
+      "sha256": "603e0e81afe6a1644f08dbe335f71e2243e9ca79e33b353d051880dc8290a3ea",
+      "bytes": 3069
+    },
+    {
+      "path": "Library/Data/GeoLocation.cs",
+      "sha256": "bc70135f8f24816ff3952d361af3aa4df57118ca9b003bca8370483f691ab0ed",
+      "bytes": 18311
+    },
+    {
+      "path": "Library/Data/GhatakaRow.cs",
+      "sha256": "336528299fe10e423aaae90199b5ea314e13ff69f71ea33c52eec1ba0da1eca0",
+      "bytes": 435
+    },
+    {
+      "path": "Library/Data/GocharaKakshas.cs",
+      "sha256": "d317a34e1a3de6496eb3fa56cc01fc297a55931a0e21070159b5dd0c04d25647",
+      "bytes": 3251
+    },
+    {
+      "path": "Library/Data/GR.cs",
+      "sha256": "f0f335f15ad031d74a6159f7636d6bcb1b0313f14f897c30bd9ff2db9da3c566",
+      "bytes": 3453
+    },
+    {
+      "path": "Library/Data/HelpText.cs",
+      "sha256": "2d577820ad8b12aa2314b34201527b5809bb4c51a2da15a677d9a29ad9d9678c",
+      "bytes": 2977
+    },
+    {
+      "path": "Library/Data/HoroscopeData.cs",
+      "sha256": "3fc4b24ce09250af9c06f28ea587d088662fe65f1583dd15e3be04e157571e47",
+      "bytes": 11054
+    },
+    {
+      "path": "Library/Data/HoroscopeDataListStatic.cs",
+      "sha256": "ff074c89753e64e804f60166d8a559fb3f99dd837ba0c3e459cfa21187f7a471",
+      "bytes": 214122
+    },
+    {
+      "path": "Library/Data/HoroscopePrediction.cs",
+      "sha256": "0eb977782a9fa4f2967a6cde886bc6ac28bbceec42111a113f9e410bb809ec5f",
+      "bytes": 8309
+    },
+    {
+      "path": "Library/Data/House.cs",
+      "sha256": "7bce18625537e5feb44c5794a010c8b9498f64a4f1ab58ee6906e30a0ae8eee9",
+      "bytes": 3932
+    },
+    {
+      "path": "Library/Data/HouseSubStrength.cs",
+      "sha256": "653c76fcafd0224ab8932aed2bc2e3397ea51cb3c5b80e38736b075abb647692",
+      "bytes": 1032
+    },
+    {
+      "path": "Library/Data/Interface/IFromUrl.cs",
+      "sha256": "997b45d0e1fea875907a5f1fbfa59c541d7841d68074db9a2026ebee8123f6f1",
+      "bytes": 594
+    },
+    {
+      "path": "Library/Data/Interface/IToDataTable.cs",
+      "sha256": "632bbab65e86f9ce21e7601516183eec93301314ea871c89044e76e0241a067e",
+      "bytes": 260
+    },
+    {
+      "path": "Library/Data/Interface/IToJpeg.cs",
+      "sha256": "2a35351d3630f4697b89ba58cad5896f4faf05f84391f0d1b145579f616c5ce9",
+      "bytes": 352
+    },
+    {
+      "path": "Library/Data/Interface/IToJson.cs",
+      "sha256": "c7a658a3324fd3e66a928535ecb09d40fe524c527ccb0cbd335bcb3d22fb7655",
+      "bytes": 274
+    },
+    {
+      "path": "Library/Data/Interface/IToXml.cs",
+      "sha256": "25dfbce749c34f7ed4b7b13d7a197d8eee174efc47a94d939c69aa05fffd5aa2",
+      "bytes": 542
+    },
+    {
+      "path": "Library/Data/LifeEvent.cs",
+      "sha256": "9657e0ea2074bb8e45b0e2ed56aaebbc7efce6a99c5fdb169b9010aca5c4d174",
+      "bytes": 11362
+    },
+    {
+      "path": "Library/Data/List/LifeEventRow.cs",
+      "sha256": "4e198e01cbf0683ee4f32e53ee0080d0ab8abe58721209cee09d68da647b053d",
+      "bytes": 790
+    },
+    {
+      "path": "Library/Data/List/PersonRow.cs",
+      "sha256": "f68d18f8e2a82105d07704e619bed2327ac71e83b69ebb3b8bfb2210950cc28a",
+      "bytes": 1285
+    },
+    {
+      "path": "Library/Data/List/PersonShareRow.cs",
+      "sha256": "bdfe13868d59c22b96b9b6369b261adc0c2fb041f50b92c28a2e7d5cafad536b",
+      "bytes": 1083
+    },
+    {
+      "path": "Library/Data/LlamaReplyJson.cs",
+      "sha256": "ddcbef4684084759c2b8c3fe8e69438bba86d96a41ad752a79c55344f833c37d",
+      "bytes": 1700
+    },
+    {
+      "path": "Library/Data/LogItem.cs",
+      "sha256": "e50e7b0d04bdc622b8dab1938f6516fbdd4b85925e10ad86821ddd5f05189e5c",
+      "bytes": 1603
+    },
+    {
+      "path": "Library/Data/LunarDay.cs",
+      "sha256": "23528d249fc4ceca543925856dca555a9566e5a8cd676c3e5eb01784db94e329",
+      "bytes": 7436
+    },
+    {
+      "path": "Library/Data/MatchPrediction.cs",
+      "sha256": "42238dce58463847d35942e1c19c9a1ad66cefcb91792756cd0b21e96128d41b",
+      "bytes": 4808
+    },
+    {
+      "path": "Library/Data/MatchReport.cs",
+      "sha256": "ef557ee3ab6fbb2ccd4d58b1d1f81395659cda1328086c314176a43c89596fe8",
+      "bytes": 10721
+    },
+    {
+      "path": "Library/Data/MatchSummaryData.cs",
+      "sha256": "a66f5e32931ec8e8b6d1bd4c1f2b2927371d15573651fd9a49f68b767a27bbca",
+      "bytes": 268
+    },
+    {
+      "path": "Library/Data/MLTable.cs",
+      "sha256": "d84c168f0c66325a6c90975b9a887b25be72440b0ecfcc2f26161b2e4ca2c940",
+      "bytes": 26501
+    },
+    {
+      "path": "Library/Data/MLTableRow.cs",
+      "sha256": "dd3de8f6bd0582bfdfcb0b5b0a883c3a79b9bc65dbcb37f190e00f691a80b31d",
+      "bytes": 605
+    },
+    {
+      "path": "Library/Data/OpenAPIMetadata.cs",
+      "sha256": "0016e5732b1a3095f923bfc0e381be09b1fa069713a9cb37340f9391ed450c5b",
+      "bytes": 13053
+    },
+    {
+      "path": "Library/Data/OpenAPIStaticTable.cs",
+      "sha256": "97d697099fd7a131611d36ea03544f75e985c76d9754d13071ff8329106752dc",
+      "bytes": 98151
+    },
+    {
+      "path": "Library/Data/PanchangaTable.cs",
+      "sha256": "5ca3b6af16a1022d068522c898ccfbc77ab5d949c2479f494b5f059ce4fdf76d",
+      "bytes": 2823
+    },
+    {
+      "path": "Library/Data/ParameterMetadata.cs",
+      "sha256": "9a7e9edc803503eb181469d9b85ce9cd6be181720fe2546bbe86dd890ea84b7f",
+      "bytes": 1111
+    },
+    {
+      "path": "Library/Data/Person.cs",
+      "sha256": "e121968f6473d029a575775f1524dcdccf5a1a6f39a24d62b50ebe4926cd54ce",
+      "bytes": 17952
+    },
+    {
+      "path": "Library/Data/PersonKutaScore.cs",
+      "sha256": "3b5a666b2d5b5d16bb30736a3bc9d578c91fb195fa854615fb71496923d6155a",
+      "bytes": 1930
+    },
+    {
+      "path": "Library/Data/PlanetLongitude.cs",
+      "sha256": "e6d357bcb6e624717de575d66d9547f3de51f78019d1b08503e392ebcfe926dd",
+      "bytes": 1470
+    },
+    {
+      "path": "Library/Data/PlanetName.cs",
+      "sha256": "1bc96ba878eca583a5b2bffda547d4af4532dd84220cce18e15d4f7629c4ae9a",
+      "bytes": 15204
+    },
+    {
+      "path": "Library/Data/PlanetSign.cs",
+      "sha256": "544b18ef9be37fc6f9d319a9b824f92cc4e92d1a390be4e80ddc65beda00f052",
+      "bytes": 2699
+    },
+    {
+      "path": "Library/Data/Prastaraka.cs",
+      "sha256": "da9d20985ab94c76dba55e0779ecb50b3b934beb28cf5c6d8bca104954e868eb",
+      "bytes": 4142
+    },
+    {
+      "path": "Library/Data/Prediction.cs",
+      "sha256": "daef4b96ec22f5da381b267eab543e42e08c9714c99802f434b19d4e5c3b8f75",
+      "bytes": 3587
+    },
+    {
+      "path": "Library/Data/RelatedBody.cs",
+      "sha256": "431127a44aadcc4f1ffa45fd4165f2edae27b27dd660116099800e50446b8646",
+      "bytes": 5340
+    },
+    {
+      "path": "Library/Data/Sarvashtakavarga.cs",
+      "sha256": "9c2d61c60c5793b07dcb9f8da90c588e0abbd92166a6cec1d694a9b2f5235a56",
+      "bytes": 3882
+    },
+    {
+      "path": "Library/Data/Shashtiamsa.cs",
+      "sha256": "5269847cd9f20e51d25bafdf11e63ba52580496409785bb00552f605072c1d03",
+      "bytes": 2520
+    },
+    {
+      "path": "Library/Data/SpecializedSummary.cs",
+      "sha256": "cea9e26de727d1bbc968e2dbc1fe1efdc8f04c01ee05bb7d4660b7fad43dae5f",
+      "bytes": 3051
+    },
+    {
+      "path": "Library/Data/Statistic/AddressGeoLocationEntity.cs",
+      "sha256": "6e75544f033d8c92ab2214b0aab388fb41ab03100f24f4d40b71b09a281ae09e",
+      "bytes": 1635
+    },
+    {
+      "path": "Library/Data/Statistic/APIAbuseRow.cs",
+      "sha256": "304e4b843b654d0c43b5f2cbf05499688ffec60df67ff0bcd61ac8916aa90ff9",
+      "bytes": 596
+    },
+    {
+      "path": "Library/Data/Statistic/CoordinatesGeoLocationEntity.cs",
+      "sha256": "0c0e3aef15ee418ad91ff95a93c1475252cee34084babc0ba6bf47df9f5bf509",
+      "bytes": 1875
+    },
+    {
+      "path": "Library/Data/Statistic/FailStatisticEntity.cs",
+      "sha256": "9e0b1fe8a433542c3ce3e7b456b4fdfc02289661d7cf0ca647dbcd8f4a6bdb52",
+      "bytes": 1126
+    },
+    {
+      "path": "Library/Data/Statistic/GeoLocationCacheEntity.cs",
+      "sha256": "7b038ce15dee157a9158772ddfea3c60b1210d9670ea69ad388a3c1ab026e40e",
+      "bytes": 1357
+    },
+    {
+      "path": "Library/Data/Statistic/GeoLocationCoordinatesEntity.cs",
+      "sha256": "0c973d7838004dbddb54aed7302332c038a1ecc5169d96de3be494df731647c1",
+      "bytes": 1267
+    },
+    {
+      "path": "Library/Data/Statistic/GeoLocationTimezoneEntity.cs",
+      "sha256": "57944b597927bc64dff3b88308cd2eb8faa0c91bb3fe1149047bba1f4ea5499e",
+      "bytes": 1361
+    },
+    {
+      "path": "Library/Data/Statistic/GeoLocationTimezoneMetadataEntity.cs",
+      "sha256": "bbd161445d811047f26708a1e1f2cd9c37d0d1001263e3e84c653bce56295b12",
+      "bytes": 2894
+    },
+    {
+      "path": "Library/Data/Statistic/IpAddressGeoLocationEntity.cs",
+      "sha256": "f51cc6c4d70cf046678afcecd4ac0e5d1fc940b4b97a4363deff6f17c42047ff",
+      "bytes": 1655
+    },
+    {
+      "path": "Library/Data/Statistic/IpAddressGeoLocationMetadataEntity.cs",
+      "sha256": "070d8640f2800fb2c762be440ef4f4f96a3204b2f4641a291c5da9a18ec76b80",
+      "bytes": 2628
+    },
+    {
+      "path": "Library/Data/Statistic/IpAddressStatisticEntity.cs",
+      "sha256": "0c3ff46c2d84309a3dc76680e85a565715875561a390e7347ad4654b429745de",
+      "bytes": 1151
+    },
+    {
+      "path": "Library/Data/Statistic/RawRequestStatisticEntity.cs",
+      "sha256": "3adfdbdd1bbf95ff22e916a7211604aa1408c71e87cc2199c053c10a1d3a3460",
+      "bytes": 15464
+    },
+    {
+      "path": "Library/Data/Statistic/RequestUrlStatisticEntity.cs",
+      "sha256": "7a898ffcdc64825f55f4a1d9879aa19c345f294cdbd7c53da7f75a0686e6fa91",
+      "bytes": 1157
+    },
+    {
+      "path": "Library/Data/Statistic/SubscriberStatisticEntity.cs",
+      "sha256": "d6292eaf7033d603491c7f3bfc7b1fa23725caf3e191eb104587453232984340",
+      "bytes": 1213
+    },
+    {
+      "path": "Library/Data/Statistic/UserAgentStatisticEntity.cs",
+      "sha256": "460f2b35129fe91d2f8014e21ba6a2bda47c0d5a125bbab87b6d71e7ca107393",
+      "bytes": 1208
+    },
+    {
+      "path": "Library/Data/SumData.cs",
+      "sha256": "79fe32db99c61c856458df072ed44b24a29b371e618ef8bec35533f86ee7de4c",
+      "bytes": 547
+    },
+    {
+      "path": "Library/Data/Tarabala.cs",
+      "sha256": "c4a57c687355c528bd3b53f0fe77d2dfe0406dcecb190252777cdb398676540e",
+      "bytes": 1884
+    },
+    {
+      "path": "Library/Data/ThisAssembly.cs",
+      "sha256": "f431f5cb85bc3b82281f6f96ddffbf4e804d7c6ff7f8d1c293293b7fc9f636f0",
+      "bytes": 398
+    },
+    {
+      "path": "Library/Data/Time.cs",
+      "sha256": "dcb3472bd47a4abd2c37fc5c4dc6bae6d29e350db17311080f3521a790a18d59",
+      "bytes": 28523
+    },
+    {
+      "path": "Library/Data/TimePreset.cs",
+      "sha256": "f7829a16f36027bf12794d5bace2b36b82aa0574be86fbe21cce3fc3bd2b0eb0",
+      "bytes": 749
+    },
+    {
+      "path": "Library/Data/TimeRange.cs",
+      "sha256": "e10a6937c49e0ead301312e977144d78ca64ca1af62c486bcb122d5183809131",
+      "bytes": 768
+    },
+    {
+      "path": "Library/Data/UserData.cs",
+      "sha256": "0168d74a28021949a69e9fbe8682b3b698575113e9b7c692c591fdf35b681896",
+      "bytes": 4081
+    },
+    {
+      "path": "Library/Data/VedicTime.cs",
+      "sha256": "f4369aa4675a1ba70f0ba49be0410c6ec1744bc3c4a0501fb1be3be9f460dd67",
+      "bytes": 1954
+    },
+    {
+      "path": "Library/Data/WebResult.cs",
+      "sha256": "0689179ac726157d2c4380c83850645897c05b8a0855120f82ffef572afb451f",
+      "bytes": 3362
+    },
+    {
+      "path": "Library/Data/WebsiteTask.cs",
+      "sha256": "44d1245e9ef884b1ad5c306738661292754bd4ac799652eda234c3a0ddf0b362",
+      "bytes": 1557
+    },
+    {
+      "path": "Library/icon.png",
+      "sha256": "7213fa986077e8fe2fd264cc62be0ede0298bc0617004e39e46b5a6a8cfd9e45",
+      "bytes": 200414
+    },
+    {
+      "path": "Library/Library.csproj",
+      "sha256": "8b23b7538363023e883fdceec924c0b919b764b36f12cc0da2fecf290878301c",
+      "bytes": 3399
+    },
+    {
+      "path": "Library/Logic/AlertText.cs",
+      "sha256": "32e00c37fd9b91cbfafc50592a942d9e23bdef033ce3a432e2c8597bbe1b902a",
+      "bytes": 12176
+    },
+    {
+      "path": "Library/Logic/Algorithms.cs",
+      "sha256": "3f972bc9cb4c36da703d7ca9ab46542e87d3ea6c250bc70c188bcc04cd975a11",
+      "bytes": 11101
+    },
+    {
+      "path": "Library/Logic/APIFunctionResult.cs",
+      "sha256": "3b363959584b5cdfd14163b4d605b438375e75edf8d4d02ee9499dfe4a37dba4",
+      "bytes": 3624
+    },
+    {
+      "path": "Library/Logic/ApiStatistic.cs",
+      "sha256": "82c9932255153381c9f8dba5d01aa254967bc171f037e6b356b776f4a60b73ab",
+      "bytes": 14970
+    },
+    {
+      "path": "Library/Logic/AutoCalculator.cs",
+      "sha256": "c1524e68c944306ed2fa2295e579fdc510fc4d7fdc700295ae37d682f545db08",
+      "bytes": 18049
+    },
+    {
+      "path": "Library/Logic/CacheManager.cs",
+      "sha256": "196dd1197cf1e6b2debe3a7916113494f6715db70a54e61e3d21b73cc9ab6d83",
+      "bytes": 13910
+    },
+    {
+      "path": "Library/Logic/Calculate/Ashtakavarga.cs",
+      "sha256": "0a041304355c5c0efa5c4aafad51fcecf2889ad20fca63c9f371955eb89d8a9a",
+      "bytes": 21982
+    },
+    {
+      "path": "Library/Logic/Calculate/Calculate.cs",
+      "sha256": "798435e764759bdbd597874a8debf2cfe1e916908505595123e9ca0940a38207",
+      "bytes": 636368
+    },
+    {
+      "path": "Library/Logic/Calculate/ChatAPI.cs",
+      "sha256": "a92db4aef020a2abbcb726040e63e6d5c1973a6344110ae883e718785ea57a0b",
+      "bytes": 75591
+    },
+    {
+      "path": "Library/Logic/Calculate/DegreeRange.cs",
+      "sha256": "49e0717a8a894ac63ecfe48f3a96bd814de10dee9249e09485ae89496544de24",
+      "bytes": 412
+    },
+    {
+      "path": "Library/Logic/Calculate/Horoscope.cs",
+      "sha256": "37c4c1f1da8e74e68b3e3e80fd6de051e85f56bc1f472f4ac236b72c9f06f8a5",
+      "bytes": 164257
+    },
+    {
+      "path": "Library/Logic/Calculate/Krishnamurti.cs",
+      "sha256": "733d3c87d2b1b3f883ccb814cdbcdf2328183032c5ef94a45b476e5f993bbf49",
+      "bytes": 33113
+    },
+    {
+      "path": "Library/Logic/Calculate/Location.cs",
+      "sha256": "eda7f352f0f5a56c987e2f5dd6acab1e5d9d40fb4f67ed654f2a6e9e6d4a220f",
+      "bytes": 56844
+    },
+    {
+      "path": "Library/Logic/Calculate/Muhurtha.cs",
+      "sha256": "d7a54ca78ca6e39bdbf78809d355410b104c892bbfec6d6ef44baf5a3c847f4f",
+      "bytes": 490345
+    },
+    {
+      "path": "Library/Logic/Calculate/PanchaPakshi.cs",
+      "sha256": "3218bea3555a9680e7c863d6503e31b8a9be08bcb52c1253abe0889c4402878f",
+      "bytes": 62731
+    },
+    {
+      "path": "Library/Logic/Calculate/Vargas.cs",
+      "sha256": "02052a25a0506fc7d64a3f59b6f682452d9a8acd8900cb18c1938ba7f6ca78ab",
+      "bytes": 11567
+    },
+    {
+      "path": "Library/Logic/Calculate/VimshottariDasa.cs",
+      "sha256": "b69699f61795e8a9453d3ec207cde95c449c06b25e52ca1d192353443bba18d1",
+      "bytes": 89823
+    },
+    {
+      "path": "Library/Logic/CalendarManager.cs",
+      "sha256": "6cb27f572802d469ad862d1d5bd112bee3490adaf3cc1789bbf4cb83b13599c9",
+      "bytes": 9833
+    },
+    {
+      "path": "Library/Logic/DatabaseManager.cs",
+      "sha256": "8a62f7364152b7cfabb8eab84c5d2524f8ea0e9859172fa785d7487b53ebcfe3",
+      "bytes": 4819
+    },
+    {
+      "path": "Library/Logic/EventChartTools.cs",
+      "sha256": "51cea3843f12ae3e89374478dab0a17159be896965d8f86bc6bdcf086dfa3eb3",
+      "bytes": 9528
+    },
+    {
+      "path": "Library/Logic/EventManager.cs",
+      "sha256": "bcf65345a0adadf336b1a8fe5aab41372295423d463125c62557680b36f88afc",
+      "bytes": 22464
+    },
+    {
+      "path": "Library/Logic/EventsChartManager.cs",
+      "sha256": "36367761bc66f2df60a6e82db320021556e45aebea22ac09f19e3007e37a4ea9",
+      "bytes": 173630
+    },
+    {
+      "path": "Library/Logic/Format.cs",
+      "sha256": "84e6c2daf45462a7d32679f49a9c732ed88bf4405da66a1e4cd6ef74b5933e41",
+      "bytes": 1418
+    },
+    {
+      "path": "Library/Logic/GIFConverter/AnimatedGifEncoder.cs",
+      "sha256": "a332269cb52a15f4a44081043290770788181dd09eb751d37263ec0194f5425f",
+      "bytes": 18359
+    },
+    {
+      "path": "Library/Logic/GIFConverter/GifDecoder.cs",
+      "sha256": "8e673b07498cf980ba86ee4d559a6440cd956676654e4d564abe38641a25249f",
+      "bytes": 19044
+    },
+    {
+      "path": "Library/Logic/GIFConverter/LZWEncoder.cs",
+      "sha256": "2cd7b06d9b0b14c9b821b35cbc76d1214fb94003497ea4f2d4115dde43d15e26",
+      "bytes": 8520
+    },
+    {
+      "path": "Library/Logic/GIFConverter/NeuQuant.cs",
+      "sha256": "1b24f2fd0c348fa11cbb778d04ae6042294dd1de750cfe019faf620be550da4a",
+      "bytes": 13799
+    },
+    {
+      "path": "Library/Logic/LibLogger.cs",
+      "sha256": "2c2bf3981a9d49a57cb46a64a39dec589df6d2750f6abee91fd79fa34c5d6c55",
+      "bytes": 749
+    },
+    {
+      "path": "Library/Logic/ListExtensions.cs",
+      "sha256": "070ef2ed30ad06bbbac8fcb517152d9e3e6a9401f0b3e2b40006aea7d29ef21f",
+      "bytes": 1736
+    },
+    {
+      "path": "Library/Logic/LogManager.cs",
+      "sha256": "acfcecb982afc0dd7b03cd28eddf514a2df37bf2a7c6ece2a3f9c9fc05a0c943",
+      "bytes": 8216
+    },
+    {
+      "path": "Library/Logic/MatchCalculator.cs",
+      "sha256": "0bd852bfde4efea1300166014ed6cd9401471498bf295c64fc883f633c947159",
+      "bytes": 85828
+    },
+    {
+      "path": "Library/Logic/NorthChartManager.cs",
+      "sha256": "e5f118baf12835eb8e67d2721eec38e792d6021fb674ece299c0cac6d9a31fff",
+      "bytes": 82881
+    },
+    {
+      "path": "Library/Logic/Secrets.cs",
+      "sha256": "6bcd8ca06e0e1b7150b72bd945e74b2d816a7dabc061e8b8cd06f2b6cea4b0f4",
+      "bytes": 2735
+    },
+    {
+      "path": "Library/Logic/ServerManager.cs",
+      "sha256": "a18abc8a843f626c3afbf3d0996a2ed3ef00d896c65105fe4e25273807c20220",
+      "bytes": 4304
+    },
+    {
+      "path": "Library/Logic/SkyChartManager.cs",
+      "sha256": "0f09a06a19aa7ab13dd6fa8c7863fbf2d989b15438d7980f0aa26575c2845bd0",
+      "bytes": 267473
+    },
+    {
+      "path": "Library/Logic/SouthChartManager.cs",
+      "sha256": "36d316b267a28cd1b7f03f632489b6b59b48febf66cb776996fb2ceac37823c0",
+      "bytes": 182302
+    },
+    {
+      "path": "Library/Logic/Syntax.cs",
+      "sha256": "e281285eb7ab56c7f6709060f7f4401bcb12a48ed9c33c39539db5cdf39f871c",
+      "bytes": 414
+    },
+    {
+      "path": "Library/Logic/Tools.cs",
+      "sha256": "99874f62ce18aba11a9e34925dd6390ba2e7754ffea658ff132e298b8fd1684a",
+      "bytes": 171341
+    },
+    {
+      "path": "Library/Logic/URL.cs",
+      "sha256": "fbcf3212c4fe62181deedb7d3145095e89dd11ff392c82dc7b5d8c98b557dd25",
+      "bytes": 14418
+    }
+  ]
+}
