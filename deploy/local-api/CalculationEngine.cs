@@ -231,6 +231,7 @@ public static class CalculationEngine
             ["interpretationHouseSystem"] = "whole_sign",
             ["navamsaSign"] = Calculate.PlanetNavamsaSign(ruler, time).ToString(),
             ["period"] = new JObject { ["PD1"] = periods.PD1.ToString(), ["PD2"] = periods.PD2.ToString() },
+            ["timingContext"] = TimingContext(time, check, periods.PD1, periods.PD2),
             ["strength"] = new JObject
             {
                 ["planet"] = ruler.ToString(), ["totalVirupas"] = total, ["totalRupas"] = total / 60,
@@ -238,6 +239,36 @@ public static class CalculationEngine
                 ["meetsEngineStrengthTest"] = Calculate.IsPlanetStrongInShadbala(ruler, time),
             },
             ["eventTimingAvailable"] = false,
+        };
+    }
+
+    private static JObject TimingContext(Time birth, Time check, PlanetName major, PlanetName minor)
+    {
+        // Expose the source table's categories, never its fatalistic prose. These
+        // cyclic period rules are not a personal event-window calculation.
+        var ruleName = major + minor.ToString() + "PD2";
+        var rule = EventDataListStatic.Rows.Single(row => row.Name.ToString() == ruleName);
+        return new JObject
+        {
+            ["schema"] = "vedastro-timing-context-v1", ["scope"] = "current_period_and_transits",
+            ["periodRule"] = new JObject
+            {
+                ["id"] = ruleName,
+                ["ratings"] = new JObject
+                {
+                    ["family"] = rule.SpecializedSummary.Family.Nature.ToString(),
+                    ["relationship"] = rule.SpecializedSummary.Love.Nature.ToString(),
+                    ["study"] = rule.SpecializedSummary.Studies.Nature.ToString(),
+                },
+            },
+            ["transits"] = new JObject(new[] { PlanetName.Jupiter, PlanetName.Saturn }.Select(planet =>
+                new JProperty(planet.ToString(), new JObject
+                {
+                    ["longitude"] = Calculate.PlanetNirayanaLongitude(planet, check).TotalDegrees,
+                    ["sign"] = Calculate.PlanetZodiacSign(planet, check).GetSignName().ToString(),
+                    ["houseFromNatalMoon"] = Calculate.GocharaZodiacSignCountFromMoon(birth, check, planet),
+                }))),
+            ["obstructionEvaluated"] = false, ["eventPredictionAvailable"] = false,
         };
     }
 

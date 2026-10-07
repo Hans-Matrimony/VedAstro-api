@@ -50,7 +50,15 @@ or `education`) plus `time` and `checkTime`. It returns natal coordinates,
 the whole-sign topic ruler, native D9 sign, current major/minor phase and six
 Shadbala components with their checked sum. Native bhava-based strength retains
 its own house convention; it does not replace whole-sign D1 placement rules.
+Its optional `timingContext` adds current Jupiter/Saturn longitudes, signs and
+houses counted from the natal Moon, plus the active PD2 rule's family,
+relationship and study categories from the pinned engine table. The client
+checks those categories against the source-locked table and checks transit
+geometry independently. This is current-period context, not an event window.
 No raw classical descriptions, predicted event dates or model output are included.
+Transit obstruction is not evaluated: the pinned `IsGocharaObstructed` method
+passes `gocharaHouse` into `PlanetsInGocharaHouse` after calculating `vedhanka`.
+Its obstruction result has not been admitted into reviewed readings.
 
 Conventions are fixed: **Lahiri, true nodes, 365.25-day dasha year, VedAstro
 bhava houses**. Bhava-house rule results must not be merged into a whole-sign

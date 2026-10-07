@@ -66,6 +66,20 @@ test('real local calculator, authentication, validation and repeat cache', async
         assert.ok(Math.abs(sum - evidence.strength.totalVirupas) <= 0.011);
         assert.equal(evidence.eventTimingAvailable, false);
         assert.equal(Object.keys(evidence.natal.planets).length, 9);
+        const context = evidence.timingContext;
+        assert.equal(context.schema, 'vedastro-timing-context-v1');
+        assert.equal(context.periodRule.id, evidence.period.PD1 + evidence.period.PD2 + 'PD2');
+        assert.deepEqual(Object.keys(context.periodRule.ratings).sort(), ['family', 'relationship', 'study']);
+        for (const nature of Object.values(context.periodRule.ratings)) assert.ok(['Good', 'Neutral', 'Bad'].includes(nature));
+        assert.equal(context.obstructionEvaluated, false);
+        assert.equal(context.eventPredictionAvailable, false);
+        for (const name of ['Jupiter', 'Saturn']) {
+          const transit = context.transits[name];
+          const coordinate = await call('PlanetNirayanaLongitude', {time:body.checkTime, planetName:name});
+          assert.ok(Math.abs(transit.longitude - coordinate.data.Payload.PlanetNirayanaLongitude.TotalDegrees) < 0.00001);
+          assert.equal(transit.houseFromNatalMoon,
+            (Math.floor(transit.longitude / 30) - Math.floor(evidence.natal.planets.Moon.longitude / 30) + 12) % 12 + 1);
+        }
       }
     }
     const invalid = [
