@@ -232,6 +232,9 @@ public static class CalculationEngine
             ["navamsaSign"] = Calculate.PlanetNavamsaSign(ruler, time).ToString(),
             ["period"] = new JObject { ["PD1"] = periods.PD1.ToString(), ["PD2"] = periods.PD2.ToString() },
             ["timingContext"] = TimingContext(time, check, periods.PD1, periods.PD2),
+            ["futureTimingSamples"] = input.topic == "marriage" &&
+                Environment.GetEnvironmentVariable("VEDASTRO_MARRIAGE_ESTIMATE_ENABLED") == "1"
+                ? FutureTimingSamples(time, check) : null,
             ["strength"] = new JObject
             {
                 ["planet"] = ruler.ToString(), ["totalVirupas"] = total, ["totalRupas"] = total / 60,
@@ -270,6 +273,30 @@ public static class CalculationEngine
                 }))),
             ["obstructionEvaluated"] = false, ["eventPredictionAvailable"] = false,
         };
+    }
+
+    private static JArray FutureTimingSamples(Time birth, Time check)
+    {
+        // Astronomical samples only. The product's explicitly experimental
+        // interpretation is separate from this pinned upstream calculator.
+        var start = check.GetStdDateTimeOffset().ToUniversalTime();
+        if (start.Year > 2094) throw new ArgumentException("timing_horizon_out_of_range");
+        var first = new DateTimeOffset(start.Year, start.Month, 1, 0, 0, 0, TimeSpan.Zero);
+        var rows = new JArray();
+        for (var month = 0; month < 60; month++)
+        {
+            var instant = month == 0 ? start : first.AddMonths(month);
+            var sample = new Time(instant, birth.GetGeoLocation());
+            var phase = VimshottariDasa.CurrentDasa8Levels(birth, sample);
+            rows.Add(new JObject
+            {
+                ["at"] = instant.ToString("yyyy-MM-ddTHH:mm:ssZ", CultureInfo.InvariantCulture),
+                ["major"] = phase.PD1.ToString(), ["minor"] = phase.PD2.ToString(),
+                ["jupiter"] = Calculate.PlanetNirayanaLongitude(PlanetName.Jupiter, sample).TotalDegrees,
+                ["saturn"] = Calculate.PlanetNirayanaLongitude(PlanetName.Saturn, sample).TotalDegrees,
+            });
+        }
+        return rows;
     }
 
     public static JObject Settings() => new()
