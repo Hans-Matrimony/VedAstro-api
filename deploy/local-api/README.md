@@ -46,7 +46,7 @@ These descriptions must undergo product interpretation and safety review before
 being shown to a user. Period names alone do not establish event predictions.
 
 `ReadingEvidence` is a single bounded call for `topic` (`marriage`, `career`
-or `education`) plus `time` and `checkTime`. It returns natal coordinates,
+or `education`, `finance`) plus `time` and `checkTime`. It returns natal coordinates,
 the whole-sign topic ruler, native D9 sign, current major/minor phase and six
 Shadbala components with their checked sum. Native bhava-based strength retains
 its own house convention; it does not replace whole-sign D1 placement rules.

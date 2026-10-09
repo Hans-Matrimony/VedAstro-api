@@ -39,7 +39,7 @@ test('real local calculator, authentication, validation and repeat cache', async
       ['AllHouseData', { time, houseName: 'House1' }],
       ['HoroscopePredictions', { birthTime: time, filterTags: ['Marriage'] }],
       ['DasaAtTime', { birthTime: time, checkTime: { ...time, StdTime: '00:00 01/01/2026 +05:30' }, levels: 2 }],
-      ...['marriage', 'career', 'education'].map(topic => ['ReadingEvidence', { time, topic,
+      ...['marriage', 'career', 'education', 'finance'].map(topic => ['ReadingEvidence', { time, topic,
         checkTime: { ...time, StdTime: '00:00 01/01/2026 +00:00' } }]),
     ]) {
       const first = await call(operation, body);
@@ -60,6 +60,7 @@ test('real local calculator, authentication, validation and repeat cache', async
       if (operation === 'ReadingEvidence') {
         const evidence = first.data.Payload.ReadingEvidence;
         assert.equal(evidence.topic, body.topic);
+        assert.equal(evidence.topicHouse, {marriage:7, career:10, education:5, finance:2}[body.topic]);
         assert.equal(evidence.interpretationHouseSystem, 'whole_sign');
         assert.equal(evidence.strength.nativeHouseSystem, 'vedastro_bhava');
         const sum = Object.values(evidence.strength.componentsVirupas).reduce((a, b) => a + b, 0);

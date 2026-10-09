@@ -196,7 +196,7 @@ public static class CalculationEngine
 
     private static JObject Reading(Time time, CalculationInput input)
     {
-        var topicHouse = input.topic switch { "marriage" => 7, "career" => 10, "education" => 5,
+        var topicHouse = input.topic switch { "marriage" => 7, "career" => 10, "education" => 5, "finance" => 2,
             _ => throw new ArgumentException("invalid_topic") };
         var check = input.checkTime?.ToTime() ?? throw new ArgumentException("check_time_required");
         if (check.GetStdDateTimeOffset() < time.GetStdDateTimeOffset()) throw new ArgumentException("check_before_birth");
