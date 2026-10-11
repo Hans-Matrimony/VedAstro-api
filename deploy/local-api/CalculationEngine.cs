@@ -41,7 +41,7 @@ public static class CalculationEngine
     ];
     public static readonly string[] HouseMethods = ["HouseZodiacSign", "LordOfHouse", "PlanetsInHouseBasedOnSign"];
     public static readonly string[] Operations = [.. PlanetMethods, .. HouseMethods,
-        "AllPlanetData", "AllHouseData", "NatalEvidence", "ReadingEvidence", "HoroscopePredictions", "DasaAtTime"];
+        "AllPlanetData", "AllHouseData", "NatalEvidence", "ReadingEvidence", "DailyEvidence", "HoroscopePredictions", "DasaAtTime"];
     private static readonly JsonSerializerOptions InputOptions = new()
     {
         UnmappedMemberHandling = JsonUnmappedMemberHandling.Disallow, MaxDepth = 12,
@@ -134,6 +134,7 @@ public static class CalculationEngine
         var directPayload = false;
         if (operation == "NatalEvidence") result = Natal(time);
         else if (operation == "ReadingEvidence") result = Reading(time, input);
+        else if (operation == "DailyEvidence") result = Daily(time, input);
         else if (operation == "HoroscopePredictions")
         {
             var tags = input.filterTags?.Select(tag => Enum.TryParse<EventTag>(tag, false, out var parsed) &&
@@ -193,6 +194,36 @@ public static class CalculationEngine
                 ["nakshatra"] = Encode(Calculate.PlanetConstellation(planet, time)),
             }))),
     };
+
+    private static JObject Daily(Time birth, CalculationInput input)
+    {
+        var check = input.checkTime?.ToTime() ?? throw new ArgumentException("check_time_required");
+        if (check.GetStdDateTimeOffset() < birth.GetStdDateTimeOffset())
+            throw new ArgumentException("check_before_birth");
+        if (input.topic is not null || input.planetName is not null || input.houseName is not null ||
+            input.filterTags is not null || input.levels is not null || input.sortByWeight is not null)
+            throw new ArgumentException("unsupported_options");
+        var periods = VimshottariDasa.CurrentDasa8Levels(birth, check);
+        return new JObject
+        {
+            ["schema"] = "vedastro-daily-evidence-v1", ["natal"] = Natal(birth),
+            ["checkTime"] = check.ToJson(), ["transitHouseReference"] = "natal_moon_whole_sign",
+            ["period"] = new JObject { ["PD1"] = periods.PD1.ToString(), ["PD2"] = periods.PD2.ToString() },
+            ["timingContext"] = TimingContext(birth, check, periods.PD1, periods.PD2),
+            ["transits"] = new JObject(PlanetName.All9Planets.Select(planet =>
+                new JProperty(planet.ToString(), new JObject
+                {
+                    ["longitude"] = Calculate.PlanetNirayanaLongitude(planet, check).TotalDegrees,
+                    ["sign"] = Calculate.PlanetZodiacSign(planet, check).GetSignName().ToString(),
+                    ["nakshatra"] = Encode(Calculate.PlanetConstellation(planet, check)),
+                    ["houseFromNatalMoon"] = Calculate.GocharaZodiacSignCountFromMoon(birth, check, planet),
+                }))),
+            // Native scores are traditional indicators, not event probabilities.
+            // The pinned obstruction method is not admitted (see README).
+            ["gocharaKakshas"] = Calculate.GocharaKakshas(check, birth).ToJson(),
+            ["obstructionEvaluated"] = false, ["eventPredictionAvailable"] = false,
+        };
+    }
 
     private static JObject Reading(Time time, CalculationInput input)
     {

@@ -39,6 +39,7 @@ test('real local calculator, authentication, validation and repeat cache', async
       ['AllHouseData', { time, houseName: 'House1' }],
       ['HoroscopePredictions', { birthTime: time, filterTags: ['Marriage'] }],
       ['DasaAtTime', { birthTime: time, checkTime: { ...time, StdTime: '00:00 01/01/2026 +05:30' }, levels: 2 }],
+      ['DailyEvidence', {time, checkTime: {...time, StdTime: '12:00 11/10/2026 +00:00'}}],
       ...['marriage', 'career', 'education', 'finance'].map(topic => ['ReadingEvidence', { time, topic,
         checkTime: { ...time, StdTime: '00:00 01/01/2026 +00:00' } }]),
     ]) {
@@ -57,6 +58,35 @@ test('real local calculator, authentication, validation and repeat cache', async
         assert.ok(Math.abs((planets.Rahu.longitude - planets.Ketu.longitude + 360) % 360 - 180) < 0.001);
       }
       if (operation === 'DasaAtTime') assert.deepEqual(Object.keys(first.data.Payload.DasaAtTime), ['PD1', 'PD2']);
+      if (operation === 'DailyEvidence') {
+        const daily = first.data.Payload.DailyEvidence;
+        assert.equal(daily.schema, 'vedastro-daily-evidence-v1');
+        assert.equal(daily.checkTime.StdTime, body.checkTime.StdTime);
+        assert.equal(daily.natal.birthTime.StdTime, time.StdTime);
+        assert.equal(daily.transitHouseReference, 'natal_moon_whole_sign');
+        assert.equal(daily.obstructionEvaluated, false);
+        assert.equal(daily.eventPredictionAvailable, false);
+        assert.equal(Object.keys(daily.transits).length, 9);
+        assert.equal(Object.keys(daily.gocharaKakshas).length, 7);
+        const direct = await call('DasaAtTime', {birthTime:time, checkTime:body.checkTime, levels:2});
+        assert.deepEqual(daily.period, direct.data.Payload.DasaAtTime);
+        for (const [name, transit] of Object.entries(daily.transits)) {
+          const coordinate = await call('PlanetNirayanaLongitude', {time:body.checkTime, planetName:name});
+          assert.ok(Math.abs(transit.longitude-coordinate.data.Payload.PlanetNirayanaLongitude.TotalDegrees)<0.00001);
+          assert.equal(transit.houseFromNatalMoon,
+            (Math.floor(transit.longitude/30)-Math.floor(daily.natal.planets.Moon.longitude/30)+12)%12+1);
+          const row = daily.gocharaKakshas[name];
+          if (row) {
+            assert.equal(row.Sign, transit.sign);
+            assert.ok([0,1].includes(row.KakshaScore));
+            assert.ok(Number.isInteger(row.Ashtaka)&&row.Ashtaka>=0&&row.Ashtaka<=8);
+            assert.ok(Number.isInteger(row.Sarvashtaka)&&row.Sarvashtaka>=0&&row.Sarvashtaka<=56);
+          }
+        }
+        const changed = await call('DailyEvidence', {time,checkTime:{...time,StdTime:'12:00 14/10/2026 +00:00'}});
+        assert.equal(changed.status, 200);
+        assert.notEqual(changed.data.Payload.DailyEvidence.transits.Moon.longitude,daily.transits.Moon.longitude);
+      }
       if (operation === 'ReadingEvidence') {
         const evidence = first.data.Payload.ReadingEvidence;
         assert.equal(evidence.topic, body.topic);
@@ -102,6 +132,12 @@ test('real local calculator, authentication, validation and repeat cache', async
       ['ReadingEvidence', {time, topic: 'unknown', checkTime: time}, key, 400],
       ['ReadingEvidence', {time, topic: 'marriage'}, key, 400],
       ['ReadingEvidence', {time, topic: 'marriage', checkTime: time, planetName: 'Rahu'}, key, 400],
+      ['DailyEvidence', {time}, key, 400],
+      ['DailyEvidence', {time,checkTime:{...time,StdTime:'12:00 01/01/1900 +00:00'}}, key, 400],
+      ['DailyEvidence', {time,checkTime:time,topic:'finance'}, key, 400],
+      ['DailyEvidence', {time,checkTime:time,levels:2}, key, 400],
+      ['DailyEvidence', {time,checkTime:time,planetName:'Moon'}, key, 400],
+      ['DailyEvidence', {time,checkTime:time,filterTags:['Gochara']}, key, 400],
     ];
     for (const [operation, body, token, status] of invalid) assert.equal((await call(operation, body, token)).status, status, operation + ':' + JSON.stringify(body));
   } finally { child.kill(); }

@@ -60,6 +60,16 @@ Transit obstruction is not evaluated: the pinned `IsGocharaObstructed` method
 passes `gocharaHouse` into `PlanetsInGocharaHouse` after calculating `vedhanka`.
 Its obstruction result has not been admitted into reviewed readings.
 
+`DailyEvidence` accepts `time` and `checkTime` without topic/planet/house/filter
+options. One local call returns natal coordinates, all nine current longitudes,
+signs, constellations and houses counted from the natal Moon, native major/minor
+periods, the same period categories and seven native `GocharaKakshas` rows.
+Kaksha, Bhinna Ashtakavarga and Sarva Ashtakavarga scores retain their native
+meaning; they are not probabilities or verified event forecasts. No raw
+catastrophic descriptions, model output or obstruction verdict is returned.
+Callers must independently validate geometry, input echoes, settings and scores
+before composing a daily reading. An evaluation time before birth is rejected.
+
 Conventions are fixed: **Lahiri, true nodes, 365.25-day dasha year, VedAstro
 bhava houses**. Bhava-house rule results must not be merged into a whole-sign
 reading. Other ayanamsas are rejected. Inputs require an explicit UTC offset;
