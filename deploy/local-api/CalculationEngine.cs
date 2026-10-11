@@ -29,7 +29,8 @@ public sealed record CalculationInput(
     TimeInput? time = null, TimeInput? birthTime = null, TimeInput? checkTime = null,
     string? planetName = null, string? houseName = null,
     [property: JsonPropertyName("Ayanamsa")] string? Ayanamsa = null,
-    string[]? filterTags = null, bool? sortByWeight = null, int? levels = null, string? topic = null);
+    string[]? filterTags = null, bool? sortByWeight = null, int? levels = null, string? topic = null,
+    bool? includeVedha = null);
 
 public static class CalculationEngine
 {
@@ -128,6 +129,8 @@ public static class CalculationEngine
     public static JObject Run(string operation, CalculationInput input)
     {
         if (!Operations.Contains(operation)) throw new ArgumentException("unknown_calculator");
+        if (input.includeVedha is not null && operation != "DailyEvidence")
+            throw new ArgumentException("unsupported_options");
         var value = input.time ?? input.birthTime ?? throw new ArgumentException("time_required");
         var time = value.ToTime();
         JToken result;
@@ -204,7 +207,7 @@ public static class CalculationEngine
             input.filterTags is not null || input.levels is not null || input.sortByWeight is not null)
             throw new ArgumentException("unsupported_options");
         var periods = VimshottariDasa.CurrentDasa8Levels(birth, check);
-        return new JObject
+        var result = new JObject
         {
             ["schema"] = "vedastro-daily-evidence-v1", ["natal"] = Natal(birth),
             ["checkTime"] = check.ToJson(), ["transitHouseReference"] = "natal_moon_whole_sign",
@@ -223,6 +226,15 @@ public static class CalculationEngine
             ["gocharaKakshas"] = Calculate.GocharaKakshas(check, birth).ToJson(),
             ["obstructionEvaluated"] = false, ["eventPredictionAvailable"] = false,
         };
+        // Explicit opt-in preserves the existing payload and clients. This uses
+        // native Vedhanka tables with occupancy at that point, never the pinned
+        // IsGocharaObstructed method's incorrect transit-house lookup.
+        if (input.includeVedha == true)
+        {
+            result["gocharaVedha"] = ReviewedVedha.Calculate(birth, check);
+            result["obstructionEvaluated"] = true;
+        }
+        return result;
     }
 
     private static JObject Reading(Time time, CalculationInput input)

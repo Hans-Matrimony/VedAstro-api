@@ -86,6 +86,60 @@ test('real local calculator, authentication, validation and repeat cache', async
         const changed = await call('DailyEvidence', {time,checkTime:{...time,StdTime:'12:00 14/10/2026 +00:00'}});
         assert.equal(changed.status, 200);
         assert.notEqual(changed.data.Payload.DailyEvidence.transits.Moon.longitude,daily.transits.Moon.longitude);
+        const selectedPoints = {
+          Sun: {11:5,3:9,10:4,6:12,5:11,9:3,4:10,12:6},
+          Moon: {7:2,1:5,6:12,11:8,10:4,3:9,2:7,5:1,12:6,8:11,4:10,9:3},
+          Mars: {3:12,11:5,6:9,12:3,5:11,9:6},
+          Mercury: {2:5,4:3,6:9,8:1,10:7,11:12,5:2,3:4,9:6,1:8,7:10,12:11},
+          Jupiter: {2:12,11:8,9:10,5:4,7:3,12:2,8:11,10:9,4:5,3:7},
+          Venus: {1:8,2:7,3:1,4:10,5:9,8:5,9:11,11:6,12:3,7:2,10:4,6:11},
+          Saturn: {3:12,11:5,6:9,12:3,5:11,9:6},
+        };
+        const exceptions = {Sun:['Saturn'], Saturn:['Sun'], Moon:['Mercury'], Mercury:['Moon']};
+        let selfObstructionPrevented = false, pairExceptionObserved = false;
+        for (const date of ['12:00 11/10/2026 +00:00','12:00 14/10/2026 +00:00','12:00 25/10/2026 +00:00']) {
+          const request = {time,checkTime:{...time,StdTime:date}};
+          const base = await call('DailyEvidence', request);
+          const explicitFalse = await call('DailyEvidence', {...request,includeVedha:false});
+          assert.deepEqual(explicitFalse.data,base.data,'false option must preserve the existing payload');
+          const result = await call('DailyEvidence', {...request,includeVedha:true});
+          assert.equal(result.status,200);
+          const enhanced = result.data.Payload.DailyEvidence;
+          const {gocharaVedha,obstructionEvaluated,...unchanged} = enhanced;
+          const {obstructionEvaluated:before,...original} = base.data.Payload.DailyEvidence;
+          assert.deepEqual(unchanged,original);
+          assert.equal(before,false); assert.equal(obstructionEvaluated,true);
+          assert.equal(gocharaVedha.schema,'reviewed-vedha-geometry-v1');
+          assert.equal(gocharaVedha.occupancyCorrection,'query_obstruction_house');
+          assert.equal(gocharaVedha.tableSelection,'pinned_upstream_first_match');
+          assert.equal(gocharaVedha.planetScope,'seven_classical_planets');
+          assert.equal(gocharaVedha.houseReference,'natal_moon_whole_sign');
+          assert.equal(gocharaVedha.eventPredictionAvailable,false);
+          assert.deepEqual(Object.keys(gocharaVedha.planets).sort(),Object.keys(selectedPoints).sort());
+          for (const [name,row] of Object.entries(gocharaVedha.planets)) {
+            const house = enhanced.transits[name].houseFromNatalMoon;
+            const point = selectedPoints[name][house]??0;
+            const atPoint = Object.keys(selectedPoints).filter(other => point!==0 && enhanced.transits[other].houseFromNatalMoon===point);
+            const ignored = atPoint.filter(other => (exceptions[name]??[]).includes(other)).sort();
+            const blockers = atPoint.filter(other => other!==name && !(exceptions[name]??[]).includes(other)).sort();
+            assert.equal(row.houseFromNatalMoon,house);
+            assert.equal(row.obstructionHouseFromNatalMoon,point);
+            assert.deepEqual(row.obstructingPlanets,blockers);
+            assert.deepEqual(row.exemptPlanetsAtPoint,ignored);
+            assert.equal(row.obstructed,blockers.length>0);
+            assert.ok(!row.obstructingPlanets.includes(name));
+            selfObstructionPrevented ||= point!==0 && blockers.length===0 && !['Sun','Moon','Mercury','Saturn'].includes(name);
+            pairExceptionObserved ||= ignored.length>0;
+          }
+        }
+        assert.ok(selfObstructionPrevented,'real fixture must expose the erroneous self-obstruction case');
+        assert.ok(pairExceptionObserved,'real fixture must exercise a pair exception');
+        for (const invalid of [
+          {time,checkTime:body.checkTime,includeVedha:'true'},
+          {time,checkTime:body.checkTime,includeVedha:true,topic:'marriage'},
+        ]) assert.equal((await call('DailyEvidence',invalid)).status,400);
+        assert.equal((await call('NatalEvidence',{time,includeVedha:true})).status,400);
+        assert.equal((await call('ReadingEvidence',{time,topic:'marriage',checkTime:body.checkTime,includeVedha:false})).status,400);
       }
       if (operation === 'ReadingEvidence') {
         const evidence = first.data.Payload.ReadingEvidence;

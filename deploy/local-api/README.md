@@ -70,6 +70,28 @@ catastrophic descriptions, model output or obstruction verdict is returned.
 Callers must independently validate geometry, input echoes, settings and scores
 before composing a daily reading. An evaluation time before birth is rejected.
 
+An explicit `"includeVedha": true` option on `DailyEvidence` adds
+`gocharaVedha` and sets its top-level `obstructionEvaluated` to true. Omitting
+the option, or passing false, preserves the existing payload. The optional
+bundle uses the pinned library's `Vedhanka` table and seven-planet occupancy,
+but queries the **obstruction house** rather than the transit's own house.
+The upstream calculation source remains unchanged; this service correction is
+identified by `occupancyCorrection: query_obstruction_house`. Sun/Saturn and
+Moon/Mercury pair exceptions are preserved. Each row exposes the transit house,
+selected obstruction point, actual blockers and exempt occupants. No natal
+or daily event, outcome probability, or favorable/adverse classification is
+inferred from this geometry. The optional bundle is not used in chat until its
+client validation and interpretation are independently reviewed.
+
+Table selection explicitly retains the pinned source's first-match behavior,
+including overlapping Venus branches. This is a named source convention, not
+a claim that all published tables agree: the website's
+[modern chapter guide](https://vedastro.org/blog/Hindu-Predictive-Astrology-Chapter-34-Gocharaphala-or-Results-of-Transits.html)
+contains different Jupiter entries. The source revision and table method are
+returned with the evidence. The older `timingContext.obstructionEvaluated`
+remains false because that separate period bundle has no obstruction result.
+`includeVedha` on other operations, and non-boolean option values, are rejected.
+
 Conventions are fixed: **Lahiri, true nodes, 365.25-day dasha year, VedAstro
 bhava houses**. Bhava-house rule results must not be merged into a whole-sign
 reading. Other ayanamsas are rejected. Inputs require an explicit UTC offset;
