@@ -67,6 +67,10 @@ public static class CalculationEngine
     {
         using var document = JsonDocument.Parse(raw, new JsonDocumentOptions { MaxDepth = 12 });
         CheckUniqueProperties(document.RootElement);
+        if (document.RootElement.ValueKind == JsonValueKind.Object &&
+            document.RootElement.TryGetProperty("includeVedha", out var vedha) &&
+            vedha.ValueKind is not (JsonValueKind.True or JsonValueKind.False))
+            throw new ArgumentException("invalid_vedha_option");
         var input = System.Text.Json.JsonSerializer.Deserialize<CalculationInput>(raw, InputOptions)
             ?? throw new ArgumentException("invalid_request");
         if (input.Ayanamsa is not null && input.Ayanamsa != "LAHIRI")

@@ -136,6 +136,8 @@ test('real local calculator, authentication, validation and repeat cache', async
         assert.ok(pairExceptionObserved,'real fixture must exercise a pair exception');
         for (const invalid of [
           {time,checkTime:body.checkTime,includeVedha:'true'},
+          {time,checkTime:body.checkTime,includeVedha:null},
+          {time,checkTime:body.checkTime,includeVedha:1},
           {time,checkTime:body.checkTime,includeVedha:true,topic:'marriage'},
         ]) assert.equal((await call('DailyEvidence',invalid)).status,400);
         assert.equal((await call('NatalEvidence',{time,includeVedha:true})).status,400);
