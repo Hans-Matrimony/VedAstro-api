@@ -26,7 +26,9 @@ using var engineLock = new SemaphoreSlim(1);
 app.MapGet("/health", () => Results.Json(new { status = "healthy", mode = "local-calculator",
     source_revision = CalculationEngine.Revision, model_calls = 0 }));
 app.MapGet("/ready", () => Results.Json(new { status = "ready", mode = "local-calculator",
-    source_revision = CalculationEngine.Revision, ayanamsa = "LAHIRI", node = "true", dasha_year_days = 365.25 }));
+    source_revision = CalculationEngine.Revision, calculation_profile = CalculationEngine.Profile.Id,
+    ayanamsa = CalculationEngine.Profile.AyanamsaName, node = "true",
+    dasha_year_days = CalculationEngine.Profile.DashaYearDays }));
 
 app.Use(async (context, next) =>
 {

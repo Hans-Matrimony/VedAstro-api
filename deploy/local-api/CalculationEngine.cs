@@ -49,11 +49,14 @@ public static class CalculationEngine
         RespectRequiredConstructorParameters = true, RespectNullableAnnotations = true,
     };
 
+    public static CalculationProfile Profile { get; private set; } = CalculationProfile.Lahiri;
+
     public static void Initialize()
     {
         // Fixed conventions for this instance; no per-request global-setting races.
-        Calculate.Ayanamsa = (int)VedAstro.Library.Ayanamsa.LAHIRI;
-        Calculate.SolarYearTimeSpan = 365.25;
+        Profile = CalculationProfile.FromEnvironment();
+        Calculate.Ayanamsa = Profile.AyanamsaCode;
+        Calculate.SolarYearTimeSpan = Profile.DashaYearDays;
         Calculate.UseMeanRahuKetu = false;
         foreach (var name in PlanetMethods.Concat(HouseMethods)) Resolve(name);
         var sample = new Time(new DateTimeOffset(2001, 1, 3, 5, 0, 0, TimeSpan.FromHours(5.5)),
@@ -73,7 +76,7 @@ public static class CalculationEngine
             throw new ArgumentException("invalid_vedha_option");
         var input = System.Text.Json.JsonSerializer.Deserialize<CalculationInput>(raw, InputOptions)
             ?? throw new ArgumentException("invalid_request");
-        if (input.Ayanamsa is not null && input.Ayanamsa != "LAHIRI")
+        if (input.Ayanamsa is not null && input.Ayanamsa != Profile.AyanamsaName)
             throw new ArgumentException("unsupported_ayanamsa");
         if (input.time is not null && input.birthTime is not null)
             throw new ArgumentException("ambiguous_time_input");
@@ -178,7 +181,7 @@ public static class CalculationEngine
         }
         return new JObject
         {
-            ["Status"] = "Pass", ["Input"] = new JObject { ["Ayanamsa"] = 1 },
+            ["Status"] = "Pass", ["Input"] = new JObject { ["Ayanamsa"] = Profile.AyanamsaCode },
             ["Payload"] = directPayload ? result : new JObject { [operation] = result },
             ["CalculationSettings"] = Settings(), ["ProviderRevision"] = Revision, ["ModelCalls"] = 0,
         };
@@ -348,7 +351,7 @@ public static class CalculationEngine
 
     public static JObject Settings() => new()
     {
-        ["ayanamsa"] = "LAHIRI", ["node"] = "true", ["dasha_year_days"] = 365.25,
+        ["ayanamsa"] = Profile.AyanamsaName, ["node"] = "true", ["dasha_year_days"] = Profile.DashaYearDays,
         ["house_system"] = "vedastro_bhava", ["engine"] = "VedAstro.Library",
     };
 }

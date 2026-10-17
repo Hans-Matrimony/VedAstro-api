@@ -18,6 +18,19 @@ Calculation and classical-rule source is unchanged.
 
 ## API contract
 
+The default profile remains `lahiri365_25`. A separate development instance can
+select `VEDASTRO_NATIVE_PROFILE=raman360` together with
+`VEDASTRO_NATIVE_PROFILE_ENVIRONMENT=development`. Other profile names and Raman
+without that development gate fail startup. This is an experimental profile;
+existing consumers must be configured and validated for it before use.
+
+The profile is fixed at process startup because the pinned library uses global
+calculation settings and caches. Requests cannot switch profiles: an explicit
+`Ayanamsa` must match the instance. Raman uses the library's 360-day dasha year,
+while Lahiri uses 365.25 days. `/ready`, `CalculationSettings` and the numeric
+`Input.Ayanamsa` echo identify the active settings. A separate instance is required
+to compare the profiles; do not change global settings inside a request.
+
 `GET /health` and `GET /ready` are public. Startup verifies calculator
 availability and a real Moon calculation before either endpoint can succeed.
 Calculation requests require `x-api-key: <VEDASTRO_SERVICE_TOKEN>`; the token
